@@ -910,18 +910,35 @@ cab_cmw,cables,"CableMod 8+6 Series Classic ModMesh Sleeved Cable Extension Kit,
 
   /* ---------- order ---------- */
   function fillOrder(s, t, ttl, custom) {
-    var c = calc(s, t), lines = [];
+    var c = calc(s, t), parts = [];
     SLOTS.forEach(function (sl) {
       var p = PARTS[s[sl.key]];
       if (/_none$/.test(p.id)) return;
-      lines.push('- ' + sl.label + ': ' + p.name);
+      parts.push({ label: sl.label, name: p.name, price: Number(p.sell) || 0 });
     });
-    lines.push('- Build and test: ' + money(c.fee), 'Total: ' + money(c.total) + ' CAD plus tax');
-    $('svc').value = 'Custom workstation build';
-    $('model').value = 'Prebuilt: ' + ttl + (custom ? ', customized' : '');
-    $('issue').value = 'Parts:\n' + lines.join('\n');
-    var target = $('request');
-    if (target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth' });
+    var order = {
+      title: ttl,
+      tier: t,
+      custom: !!custom,
+      parts: parts,
+      buildFee: c.fee,
+      subtotal: c.sub,
+      total: c.total,
+      currency: 'CAD',
+      taxNote: 'Before applicable taxes',
+      createdAt: new Date().toISOString()
+    };
+    try {
+      sessionStorage.setItem('poweredComputersPendingOrder', JSON.stringify(order));
+      window.location.href = '/checkout.html';
+    } catch (err) {
+      $('svc').value = 'Custom workstation build';
+      $('model').value = 'Prebuilt: ' + ttl + (custom ? ', customized' : '');
+      $('issue').value = 'Parts:\n' + parts.map(function (p) { return '- ' + p.label + ': ' + p.name; }).join('\n') +
+        '\n- Build and test: ' + money(c.fee) + '\nEstimated total: ' + money(c.total) + ' CAD before tax. Stock and final price must be confirmed.';
+      var target = $('request');
+      if (target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   /* ---------- configurator ---------- */
