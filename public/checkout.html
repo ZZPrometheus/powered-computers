@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090d0c">
+<title>Submit build request | Powered Computers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#090d0c;--surface:#111917;--fg:#f1f5f3;--muted:#9fb0aa;--line:#24312d;--accent:#a8e45c;--accent-ink:#0b1407;--danger:#ff7a7a;--font-display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;--font-body:"IBM Plex Sans",system-ui,sans-serif;--font-mono:"IBM Plex Mono",monospace;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 var(--font-body);padding:24px 16px 56px}a{color:inherit}.wrap{max-width:920px;margin:0 auto}header{border-bottom:1px solid var(--line);padding:8px 0 20px}.brand{font:800 22px var(--font-display);text-decoration:none}.bolt{color:var(--accent)}main{padding-top:38px}h1,h2{font-family:var(--font-display);line-height:1.08;letter-spacing:-.02em;margin:0}h1{font-size:clamp(34px,6vw,54px)}h2{font-size:25px}.muted{color:var(--muted)}.intro{margin:12px 0 28px;max-width:68ch;color:var(--muted)}.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;margin:18px 0}.parts{list-style:none;padding:0;margin:18px 0 0}.parts li{display:flex;justify-content:space-between;gap:20px;padding:10px 0;border-bottom:1px solid var(--line)}.parts li span:last-child{font-family:var(--font-mono);white-space:nowrap}.totals{max-width:420px;margin:18px 0 0 auto}.totalrow{display:flex;justify-content:space-between;gap:16px;padding:6px 0}.grand{border-top:1px solid var(--line);margin-top:8px;padding-top:14px;font-weight:700;font-size:21px;color:var(--accent)}.notice{border-left:3px solid var(--accent);padding:12px 16px;background:#0c130f;color:var(--muted);margin-top:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{font-weight:600;font-size:15px}input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:105px;resize:vertical}.hint{font-size:13px;color:var(--muted)}.btn{display:inline-block;padding:13px 20px;border-radius:6px;border:2px solid var(--fg);background:transparent;color:var(--fg);font:600 16px var(--font-body);text-decoration:none;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.btn:disabled{opacity:.6;cursor:wait}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}.status{padding:12px 14px;border:1px solid var(--line);border-radius:6px;margin-top:16px}.status.ok{border-color:var(--accent)}.status.err{border-color:var(--danger)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:18px}.check input{width:auto;margin-top:6px}.check label{font-weight:400}.hp{position:absolute;left:-10000px}footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;color:var(--muted);font-size:14px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:18px}.parts li{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="/"> <span class="bolt">ϟ</span> Powered Computers</a></header>
+<main>
+<p class="muted">BUILD ORDER REQUEST</p>
+<h1>Review your build</h1>
+<p class="intro">Check the selected parts and send us your request. This is not a payment or a confirmed order. We will check supplier stock and contact you to confirm availability, any substitutions, and the final price before you pay.</p>
+<div id="order-content" class="panel" aria-live="polite">
+  <p class="muted">Loading your selected build…</p>
+</div>
+<section class="panel">
+<h2>Your contact details</h2>
+<p class="muted" style="margin:8px 0 20px">Tell us how to reach you about stock and final pricing.</p>
+<form id="order-form" novalidate>
+<div class="grid">
+<div class="field"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required maxlength="120"></div>
+<div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254"></div>
+<div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="204-555-0123" maxlength="50"><span class="hint">Provide an email address or phone number (or both).</span></div>
+<div class="field full"><label for="notes">Notes or preferred substitutions (optional)</label><textarea id="notes" name="notes" maxlength="1500" placeholder="Anything else we should know?"></textarea></div>
+</div>
+<div class="hp" aria-hidden="true"><label for="website">Leave this field blank</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+<div class="check"><input id="ack" type="checkbox" required><label for="ack">I understand this is an order request only. Powered Computers must confirm part availability and the final price before the order is accepted. No payment is being taken now.</label></div>
+<div class="actions"><button class="btn primary" id="submit" type="submit">Submit order request</button><a class="btn" href="/#configure">Back to configurator</a></div>
+<p id="status" class="status" role="status" aria-live="polite" hidden></p>
+</form>
+</section>
+</main>
+<footer>Powered Computers · 395 Andrews Street · 431-792-2243 · <a href="mailto:poweredcomputers@gmail.com">poweredcomputers@gmail.com</a></footer>
+</div>
+<script>
+(function(){
+  'use strict';
+  var KEY='poweredComputersPendingOrder';
+  var order=null;
+  var host=document.getElementById('order-content');
+  var form=document.getElementById('order-form');
+  var status=document.getElementById('status');
+  var submit=document.getElementById('submit');
+  function money(n){return new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD'}).format(Number(n)||0);}
+  function node(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e;}
+  function showMissing(){
+    host.textContent='';
+    host.appendChild(node('h2','', 'No build selected'));
+    host.appendChild(node('p','muted','Please return to the configurator and choose a prebuilt or customize a PC before submitting an order request.'));
+    var a=node('a','btn primary','Go to builds');a.href='/#shop';host.appendChild(a);
+    form.hidden=true;
+  }
+  try{order=JSON.parse(sessionStorage.getItem(KEY)||'null');}catch(e){order=null;}
+  if(!order||!Array.isArray(order.parts)||!order.parts.length||!order.title){showMissing();return;}
+  host.textContent='';
+  host.appendChild(node('h2','',order.title));
+  host.appendChild(node('p','muted', (order.custom?'Customized build':'Prebuilt configuration')+' · '+String(order.tier||'')+' tier'));
+  var list=node('ul','parts');
+  order.parts.forEach(function(p){var li=node('li');li.appendChild(node('span', '',String(p.label||'Part')+': '+String(p.name||'')));li.appendChild(node('span','',money(p.price)));list.appendChild(li);});
+  host.appendChild(list);
+  var totals=node('div','totals');
+  [['Build, assembly and testing',money(order.buildFee)],['Estimated total',money(order.total)]].forEach(function(r,i){var row=node('div','totalrow'+(i===1?' grand':''));row.appendChild(node('span','',r[0]));row.appendChild(node('span','',r[1]));totals.appendChild(row);});
+  host.appendChild(totals);
+  host.appendChild(node('p','hint','Estimated CAD pricing before applicable taxes. Supplier stock and final pricing are not guaranteed until we confirm them.'));
+  var notice=node('div','notice','Submitting this request does not reserve parts, authorize a purchase, or collect payment. We will contact you after checking availability.');
+  host.appendChild(notice);
+  function val(id){return document.getElementById(id).value.trim();}
+  function say(t,kind){status.textContent=t;status.className='status '+(kind||'');status.hidden=!t;}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=val('name'),email=val('email'),phone=val('phone'),notes=val('notes'),digits=phone.replace(/\D/g,'');
+    var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!name){say('Please enter your name.','err');document.getElementById('name').focus();return;}
+    if(email&&!emailOk){say('Please check your email address.','err');document.getElementById('email').focus();return;}
+    if(!emailOk&&digits.length<7){say('Please provide a valid email address or phone number.','err');document.getElementById(email?'email':'phone').focus();return;}
+    if(!document.getElementById('ack').checked){say('Please confirm that you understand this is an order request, not a payment.','err');return;}
+    var lines=['New PC build order request','', 'Build: '+order.title,'Type: '+(order.custom?'Customized':'Prebuilt'),'Tier: '+String(order.tier||''),'','Selected components:'];
+    order.parts.forEach(function(p){lines.push('- '+p.label+': '+p.name+' — '+money(p.price));});
+    lines.push('- Assembly, testing and setup: '+money(order.buildFee),'Estimated total: '+money(order.total)+' CAD before tax','','Availability and final price must be confirmed by Powered Computers before the order is accepted. No payment has been collected.');
+    if(notes)lines.push('','Customer notes: '+notes);
+    lines.push('','Submitted: '+new Date().toLocaleString());
+    var payload={subject:'PC build order request from '+name,from_name:'Powered Computers website',name:name,phone:phone,service:'PC build order request',machine:order.title,message:lines.join('\n'),botcheck:val('website')};
+    if(emailOk)payload.email=email;
+    submit.disabled=true;submit.textContent='Submitting…';say('Sending your order request…','');
+    fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){return r.json().then(function(j){return {ok:r.status===200&&j&&j.success!==false,body:j};});})
+    .then(function(r){
+      if(!r.ok)throw new Error('Request was not accepted');
+      try{sessionStorage.removeItem(KEY);}catch(e){}
+      form.hidden=true;
+      say('Thank you. Your build request has been sent to Powered Computers. We will check supplier stock and contact you to confirm availability, any substitutions, and the final price. No payment has been taken.','ok');
+    }).catch(function(){
+      say('We could not send your request. Please try again, or call 431-792-2243 / email poweredcomputers@gmail.com. Your selected build is still shown above.','err');
+    }).then(function(){submit.disabled=false;submit.textContent='Submit order request';});
+  });
+})();
+</script>
+</body>
+</html>
