@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#090d0c;--surface:#111917;--fg:#f1f5f3;--muted:#9fb0aa;--line:#24312d;--accent:#a8e45c;--accent-ink:#0b1407;--danger:#ff7a7a;--font-display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;--font-body:"IBM Plex Sans",system-ui,sans-serif;--font-mono:"IBM Plex Mono",monospace;color-scheme:dark}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 var(--font-body);padding:24px 16px 56px}a{color:inherit}.wrap{max-width:920px;margin:0 auto}header{border-bottom:1px solid var(--line);padding:8px 0 20px}.brand{font:800 22px var(--font-display);text-decoration:none}.bolt{color:var(--accent)}main{padding-top:38px}h1,h2{font-family:var(--font-display);line-height:1.08;letter-spacing:-.02em;margin:0}h1{font-size:clamp(34px,6vw,54px)}h2{font-size:25px}.muted{color:var(--muted)}.intro{margin:12px 0 28px;max-width:68ch;color:var(--muted)}.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;margin:18px 0}.parts{list-style:none;padding:0;margin:18px 0 0}.parts li{display:flex;justify-content:space-between;gap:20px;padding:10px 0;border-bottom:1px solid var(--line)}.parts li span:last-child{font-family:var(--font-mono);white-space:nowrap}.totals{max-width:420px;margin:18px 0 0 auto}.totalrow{display:flex;justify-content:space-between;gap:16px;padding:6px 0}.grand{border-top:1px solid var(--line);margin-top:8px;padding-top:14px;font-weight:700;font-size:21px;color:var(--accent)}.notice{border-left:3px solid var(--accent);padding:12px 16px;background:#0c130f;color:var(--muted);margin-top:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{font-weight:600;font-size:15px}input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:105px;resize:vertical}.hint{font-size:13px;color:var(--muted)}.btn{display:inline-block;padding:13px 20px;border-radius:6px;border:2px solid var(--fg);background:transparent;color:var(--fg);font:600 16px var(--font-body);text-decoration:none;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.btn:disabled{opacity:.6;cursor:wait}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}.status{padding:12px 14px;border:1px solid var(--line);border-radius:6px;margin-top:16px}.status.ok{border-color:var(--accent)}.status.err{border-color:var(--danger)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:18px}.check input{width:auto;margin-top:6px}.check label{font-weight:400}.hp{position:absolute;left:-10000px}footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;color:var(--muted);font-size:14px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 var(--font-body);padding:24px 16px 56px}a{color:inherit}.wrap{max-width:920px;margin:0 auto}header{border-bottom:1px solid var(--line);padding:8px 0 20px}.brand{font:800 22px var(--font-display);text-decoration:none}.bolt{color:var(--accent)}main{padding-top:38px}h1,h2{font-family:var(--font-display);line-height:1.08;letter-spacing:-.02em;margin:0}h1{font-size:clamp(34px,6vw,54px)}h2{font-size:25px}.muted{color:var(--muted)}.intro{margin:12px 0 28px;max-width:68ch;color:var(--muted)}.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;margin:18px 0}.parts{list-style:none;padding:0;margin:18px 0 0}.parts li{display:flex;justify-content:space-between;gap:20px;padding:10px 0;border-bottom:1px solid var(--line)}.parts li span:last-child{font-family:var(--font-mono);white-space:nowrap}.totals{max-width:420px;margin:18px 0 0 auto}.totalrow{display:flex;justify-content:space-between;gap:16px;padding:6px 0}.grand{border-top:1px solid var(--line);margin-top:8px;padding-top:14px;font-weight:700;font-size:21px;color:var(--accent)}.availability-list{display:grid;gap:10px;margin-top:16px}.availability-item{border:1px solid var(--line);border-radius:8px;padding:12px}.availability-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:600}.availability-suppliers{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px}.supplier{font-size:13px;border:1px solid var(--line);border-radius:6px;padding:9px}.supplier a{display:block;margin-top:4px;color:var(--accent)}.stock-good{color:var(--accent)}.stock-bad{color:var(--danger)}.stock-unknown{color:#e8c875}.scan-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px}.notice{border-left:3px solid var(--accent);padding:12px 16px;background:#0c130f;color:var(--muted);margin-top:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{font-weight:600;font-size:15px}input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:105px;resize:vertical}.hint{font-size:13px;color:var(--muted)}.btn{display:inline-block;padding:13px 20px;border-radius:6px;border:2px solid var(--fg);background:transparent;color:var(--fg);font:600 16px var(--font-body);text-decoration:none;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.btn:disabled{opacity:.6;cursor:wait}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}.status{padding:12px 14px;border:1px solid var(--line);border-radius:6px;margin-top:16px}.status.ok{border-color:var(--accent)}.status.err{border-color:var(--danger)}.check{display:flex;gap:10px;align-items:flex-start;margin-top:18px}.check input{width:auto;margin-top:6px}.check label{font-weight:400}.hp{position:absolute;left:-10000px}footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;color:var(--muted);font-size:14px}
 @media(max-width:640px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:18px}.parts li{font-size:15px}}
 </style>
 </head>
@@ -73,6 +73,130 @@
   host.appendChild(node('p','hint','Estimated CAD pricing before applicable taxes. Supplier stock and final pricing are not guaranteed until we confirm them.'));
   var notice=node('div','notice','Submitting this request does not reserve parts, authorize a purchase, or collect payment. We will contact you after checking availability.');
   host.appendChild(notice);
+
+  var availabilityResults = null;
+  var availabilitySummary = "Availability scan has not completed; all supplier stock must be verified manually.";
+  var scanButton = document.getElementById('rescan');
+  var scanStatus = document.getElementById('availability-status');
+  var scanHost = document.getElementById('availability-results');
+  var supplierNames = {
+    memoryexpress:'Memory Express', canadacomputers:'Canada Computers',
+    newegg:'Newegg Canada', amazon:'Amazon Canada', bestbuy:'Best Buy Canada'
+  };
+  function stockLabel(status){
+    return ({in_stock:'In stock (verify)',out_of_stock:'Out of stock',unknown:'Stock unconfirmed',
+      not_found:'No matching listing',manual_required:'Live check unavailable',setup_required:'Setup required'})[status] || 'Not checked';
+  }
+  function renderAvailability(results){
+    scanHost.textContent='';
+    (results||[]).forEach(function(part){
+      var card=node('div','availability-item');
+      card.appendChild(node('div','availability-head',part.label+': '+part.name));
+      var grid=node('div','availability-suppliers');
+      (part.providers||[]).forEach(function(p){
+        var cell=node('div','supplier');
+        var cls=p.status==='in_stock'?'stock-good':(p.status==='out_of_stock'?'stock-bad':'stock-unknown');
+        cell.appendChild(node('div',cls, (p.name||supplierNames[p.retailer]||p.retailer)+': '+stockLabel(p.status)));
+        if(p.productName)cell.appendChild(node('div','',p.productName));
+        if(p.price!==null&&p.price!==undefined)cell.appendChild(node('div','',String(p.price)));
+        if(p.note)cell.appendChild(node('div','hint',p.note));
+        if(p.productUrl||p.searchUrl){var a=node('a','',p.productUrl?'Open product':'Search retailer');a.href=p.productUrl||p.searchUrl;a.target='_blank';a.rel='noopener noreferrer';cell.appendChild(a);}
+        grid.appendChild(cell);
+      });
+      card.appendChild(grid);scanHost.appendChild(card);
+    });
+  }
+  function summariseAvailability(results){
+    var lines=['SUPPLIER AVAILABILITY CHECK'];
+    (results||[]).forEach(function(part){
+      lines.push(part.label+': '+part.name);
+      (part.providers||[]).forEach(function(p){
+        lines.push('  - '+(p.name||p.retailer)+': '+stockLabel(p.status)+(p.productUrl?' — '+p.productUrl:(p.searchUrl?' — '+p.searchUrl:''))+(p.note?' ('+p.note+')':''));
+      });
+    });
+    lines.push('Stock is indicative only and must be reconfirmed with the retailer. No inventory is reserved.');
+    return lines.join('\n');
+  }
+  function delay(ms){return new Promise(function(resolve){setTimeout(resolve,ms);});}
+  async function checkAvailability(){
+    if(!order||!Array.isArray(order.parts))return;
+    scanButton.disabled=true;scanButton.textContent='Checking…';
+    scanStatus.textContent='Starting supplier stock scan…';scanStatus.className='status';
+    scanHost.textContent='';
+    try{
+      var started=await fetch('/api/availability',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({parts:order.parts.map(function(p){return {label:p.label,name:p.name};})})});
+      var initial=await started.json();
+      if(!started.ok||!initial.success)throw new Error(initial.message||'Could not start stock scan.');
+      if(initial.ready){
+        availabilityResults=initial.results||[];
+      }else{
+        scanStatus.textContent=initial.message||'Checking supplier inventory…';
+        var finalData=null;
+        for(var attempt=0;attempt<24;attempt++){
+          await delay(5000);
+          var poll=await fetch('/api/availability?runId='+encodeURIComponent(initial.runId),{headers:{'Accept':'application/json'}});
+          var data=await poll.json();
+          if(!poll.ok||!data.success)throw new Error(data.message||'Stock scan failed.');
+          if(data.ready){finalData=data;break;}
+          scanStatus.textContent='Supplier scan running ('+(attempt+1)+' of 24)…';
+        }
+        if(!finalData)throw new Error('Supplier scan is taking longer than expected. You can retry or use the retailer links.');
+        availabilityResults=normaliseStockResults(finalData.items||[]);
+      }
+      renderAvailability(availabilityResults);
+      availabilitySummary=summariseAvailability(availabilityResults);
+      var hasSetup=availabilityResults.some(function(p){return p.providers.some(function(x){return x.status==='setup_required';});});
+      scanStatus.textContent=hasSetup?'Stock scan setup is incomplete. Configure APIFY_API_TOKEN to enable Memory Express and Canada Computers.':'Availability results loaded. Review each supplier and confirm stock before accepting the order.';
+      scanStatus.className='status '+(hasSetup?'err':'ok');
+    }catch(err){
+      availabilityResults=null;
+      availabilitySummary='SUPPLIER AVAILABILITY CHECK FAILED: '+String(err.message||err)+'. Stock was not confirmed; please verify all components manually.';
+      scanStatus.textContent=availabilitySummary;
+      scanStatus.className='status err';
+    }finally{
+      scanButton.disabled=false;scanButton.textContent='Run stock check again';
+    }
+  }
+  function normaliseStockResults(items){
+    var parts=order.parts.map(function(p){return {label:p.label,name:p.name,providers:[]};});
+    var wanted=parts.map(function(p){
+      var tokens=p.name.toLowerCase().replace(/[^a-z0-9]+/g,' ').split(/\s+/).filter(function(t){return t.length>2&&!['with','the','and','for','amd','intel','nvidia'].includes(t);});
+      return {tokens:tokens};
+    });
+    var providers=['memoryexpress','canadacomputers'];
+    parts.forEach(function(part,idx){
+      providers.forEach(function(id){
+        var hits=(items||[]).map(function(item){
+          var title=String(item.productName||item.productTitle||item.title||item.name||item.product_name||item.itemName||item.model||'');
+          var hay=title.toLowerCase().replace(/[^a-z0-9]+/g,' ');
+          var score=wanted[idx].tokens.length?wanted[idx].tokens.filter(function(t){return hay.includes(t);}).length/wanted[idx].tokens.length:0;
+          var src=String(item.retailer||item.store||item.source||item.website||item.retailerName||'').toLowerCase()+' '+String(item.url||item.productUrl||item.product_url||'').toLowerCase();
+          var rid=/memory.?express/.test(src)?'memoryexpress':(/canada.?computers/.test(src)?'canadacomputers':'');
+          return {item:item,title:title,score:score,rid:rid,url:item.url||item.productUrl||item.product_url||''};
+        }).filter(function(x){return x.rid===id&&x.score>=0.5;}).sort(function(a,b){return b.score-a.score;});
+        var hit=hits[0],status='not_found',note='No confidently matched listing was returned.';
+        if(hit){
+          var it=hit.item;status='unknown';note='Product matched, but stock was not explicitly confirmed.';
+          ['inStock','isInStock','available','isAvailable','onlineAvailable'].some(function(k){if(typeof it[k]==='boolean'){status=it[k]?'in_stock':'out_of_stock';note='Supplier listing data; reconfirm before purchase.';return true;}return false;});
+          if(status==='unknown'){
+            ['availableQuantity','quantityAvailable','stockQuantity','quantity','inventory'].some(function(k){var v=it[k];if(typeof v==='number'||(typeof v==='string'&&/^\\d+$/.test(v.trim()))){status=Number(v)>0?'in_stock':'out_of_stock';note='Quantity reported by supplier data; reconfirm before purchase.';return true;}return false;});
+          }
+          if(status==='unknown'){
+            ['availability','availabilityText','stockStatus','stock_status','inventoryStatus','status','stock'].some(function(k){var v=it[k];if(typeof v==='string'){var s=v.toLowerCase();if(/out of stock|sold out|unavailable|back.?order|not available/.test(s)){status='out_of_stock';note=v;return true;}if(/in stock|available now|available for pickup|available online/.test(s)){status='in_stock';note=v;return true;}}return false;});
+          }
+        }
+        part.providers.push({retailer:id,name:supplierNames[id],status:status,productName:hit&&hit.title,price:hit&&(hit.item.price??hit.item.currentPrice??null),productUrl:hit&&hit.url||null,searchUrl:hit?null:(id==='memoryexpress'?'https://www.memoryexpress.com/Search/Products?Search='+encodeURIComponent(part.name):'https://www.canadacomputers.com/en/search?search='+encodeURIComponent(part.name)),note:note});
+      });
+      ['newegg','amazon','bestbuy'].forEach(function(id){
+        var url=id==='newegg'?'https://www.newegg.ca/p/pl?d=':id==='amazon'?'https://www.amazon.ca/s?k=':'https://www.bestbuy.ca/en-ca/search?search=';
+        part.providers.push({retailer:id,name:supplierNames[id],status:'manual_required',searchUrl:url+encodeURIComponent(part.name),note:'No approved live consumer-stock connection is configured.'});
+      });
+    });
+    return parts;
+  }
+  scanButton.addEventListener('click',checkAvailability);
+  checkAvailability();
+
   function val(id){return document.getElementById(id).value.trim();}
   function say(t,kind){status.textContent=t;status.className='status '+(kind||'');status.hidden=!t;}
   form.addEventListener('submit',function(e){
@@ -87,7 +211,7 @@
     order.parts.forEach(function(p){lines.push('- '+p.label+': '+p.name+' — '+money(p.price));});
     lines.push('- Assembly, testing and setup: '+money(order.buildFee),'Estimated total: '+money(order.total)+' CAD before tax','','Availability and final price must be confirmed by Powered Computers before the order is accepted. No payment has been collected.');
     if(notes)lines.push('','Customer notes: '+notes);
-    lines.push('','Submitted: '+new Date().toLocaleString());
+    lines.push('','Submitted: '+new Date().toLocaleString(),'','',availabilitySummary);
     var payload={subject:'PC build order request from '+name,from_name:'Powered Computers website',name:name,phone:phone,service:'PC build order request',machine:order.title,message:lines.join('\n'),botcheck:val('website')};
     if(emailOk)payload.email=email;
     submit.disabled=true;submit.textContent='Submitting…';say('Sending your order request…','');
