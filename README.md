@@ -54,3 +54,17 @@ Open the local URL Wrangler prints.
 ## Updating the parts catalog
 
 Edit `public/data/parts_owner.csv`. The current HTML configurator also contains an embedded copy of the columns it consumes. When the CSV changes, regenerate that embedded block from the CSV using the same columns as the `<script id="parts-csv">` header, or ask for the catalog loader to be changed to fetch the CSV dynamically. Keep the part `id` values stable because the build presets refer to them.
+
+
+## Automatic part availability checks
+
+The order review page starts a supplier scan automatically and includes the results in the order-request email. The current integration uses the Apify actor **Canada Computers & Memory Express Stock & Price Scraper** for Canada Computers and Memory Express. It requests Winnipeg-area store inventory where available. The actor is a third-party paid service (published pricing starts at US$3 per 1,000 products); create an Apify account and check its current pricing/terms before enabling it.
+
+1. Create an account at https://apify.com/ and open **Settings → Integrations** to copy an API token.
+2. In Cloudflare, open **Workers & Pages → powered-computers → Settings → Variables and Secrets**.
+3. Add a Worker secret named \`APIFY_API_TOKEN\` with the Apify token. Do not put this token in GitHub, HTML, or browser JavaScript.
+4. Redeploy the Worker, then submit a test build request.
+
+The other selected retailers (Amazon Canada, Newegg Canada, and Best Buy Canada) currently appear as direct search links and are explicitly marked **Live check unavailable**. Their public documentation does not provide a general consumer inventory endpoint that this site can safely use for anonymous product stock checks. Newegg's documented inventory endpoint is for marketplace sellers' own items; Amazon's product data access is subject to its Associates/API licence; Best Buy's documented store inventory API describes US/Puerto Rico stores. Do not interpret a search result or product page as confirmed stock.
+
+All availability results are indicative, can change at any time, and do not reserve inventory. Confirm stock and final price with the retailer before accepting payment. If the Apify secret is not configured, the order sheet will show setup-required states and supplier search links rather than inventing stock results.
