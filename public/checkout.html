@@ -22,6 +22,14 @@
 <div id="order-content" class="panel" aria-live="polite">
   <p class="muted">Loading your selected build…</p>
 </div>
+<section class="panel" id="availability-panel" aria-labelledby="availability-heading">
+<h2 id="availability-heading">Supplier availability check</h2>
+<p class="muted" style="margin:8px 0 12px">Checking Memory Express and Canada Computers through Apify. Newegg Canada, Amazon Canada and Best Buy Canada currently have direct search links only and are not live-checked by this integration.</p>
+<p id="availability-status" class="status" role="status" aria-live="polite">Preparing supplier check…</p>
+<div class="scan-actions"><button class="btn" id="rescan" type="button">Run stock check again</button><span class="hint">Winnipeg-area inventory is requested where the retailer provides it.</span></div>
+<div id="availability-results" class="availability-list"></div>
+<p class="hint" style="margin-top:12px">Stock can change at any time. Results are indicative only and do not reserve inventory. Confirm availability and final price with the retailer before accepting payment.</p>
+</section>
 <section class="panel">
 <h2>Your contact details</h2>
 <p class="muted" style="margin:8px 0 20px">Tell us how to reach you about stock and final pricing.</p>
