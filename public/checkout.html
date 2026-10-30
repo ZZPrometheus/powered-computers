@@ -202,9 +202,6 @@
     });
     return parts;
   }
-  scanButton.addEventListener('click',checkAvailability);
-  checkAvailability();
-
   function val(id){return document.getElementById(id).value.trim();}
   function say(t,kind){status.textContent=t;status.className='status '+(kind||'');status.hidden=!t;}
   form.addEventListener('submit',function(e){
@@ -234,6 +231,11 @@
       say('We could not send your request. Please try again, or call 431-792-2243 / email poweredcomputers@gmail.com. Your selected build is still shown above.','err');
     }).then(function(){submit.disabled=false;submit.textContent='Submit order request';});
   });
+
+  // Register order submission before optional stock UI startup. If the stock
+  // panel is absent in a cached/older deployment, the order form still works.
+  if(scanButton) scanButton.addEventListener('click',checkAvailability);
+  if(scanButton && scanStatus && scanHost) checkAvailability();
 })();
 </script>
 </body>
