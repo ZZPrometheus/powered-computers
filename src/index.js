@@ -41,7 +41,23 @@ function stockStatus(item) {
   for (const key of numericKeys) {
     const value = item[key];
     if (typeof value === "number" && Number.isFinite(value)) return value > 0 ? "in_stock" : "out_of_stock";
-    if (typeof value === "string" && /^\d+$/.test(value.trim())) return Number(value) > 0 ? "in_stock" : "out_of_stock";
+    if (typeof value === "string" && /^\d+\+?$/.test(value.trim())) return Number(value.replace("+", "")) > 0 ? "in_stock" : "out_of_stock";
+  }
+  if (Array.isArray(item.stores) && item.stores.length) {
+    let known = false, found = false;
+    for (const store of item.stores) {
+      const quantity = store.availableQuantity ?? store.quantityAvailable ?? store.stockQuantity ??
+        store.quantity ?? store.inventory ?? store.qty ?? store.stock;
+      if (typeof quantity === "number" && Number.isFinite(quantity)) {
+        known = true; if (quantity > 0) found = true;
+      } else if (typeof quantity === "string" && /^\d+\+?$/.test(quantity.trim())) {
+        known = true; if (Number(quantity.replace("+", "")) > 0) found = true;
+      }
+      const statusText = String(store.availability || store.stockStatus || store.status || "").toLowerCase();
+      if (/out of stock|sold out|unavailable|not available/.test(statusText)) known = true;
+      if (/in stock|available now|available for pickup|available online/.test(statusText)) { known = true; found = true; }
+    }
+    if (known) return found ? "in_stock" : "out_of_stock";
   }
   const textKeys = ["availability", "availabilityText", "stockStatus", "stock_status", "inventoryStatus", "status", "stock"];
   for (const key of textKeys) {
@@ -50,23 +66,6 @@ function stockStatus(item) {
       const s = value.toLowerCase();
       if (/out of stock|sold out|unavailable|back.?order|not available/.test(s)) return "out_of_stock";
       if (/in stock|available now|available for pickup|available online|ships? .*days|ready for pickup/.test(s)) return "in_stock";
-    }
-  }
-  if (Array.isArray(item.stores)) {
-    const local = item.stores.filter(store => /winnipeg|manitoba|\bmb\b/i.test(JSON.stringify(store)));
-    if (local.length) {
-      let known = false, found = false;
-      for (const store of local) {
-        const q = store.quantity ?? store.availableQuantity ?? store.stockQuantity ?? store.inventory;
-        if (typeof q === "number" || (typeof q === "string" && /^\d+$/.test(q.trim()))) {
-          known = true; if (Number(q) > 0) found = true;
-        } else {
-          const s = String(store.availability || store.stock || store.status || "").toLowerCase();
-          if (/in stock|available/.test(s)) { known = true; found = true; }
-          else if (/out of stock|unavailable|sold out/.test(s)) known = true;
-        }
-      }
-      if (known) return found ? "in_stock" : "out_of_stock";
     }
   }
   return "unknown";
