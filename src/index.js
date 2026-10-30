@@ -175,6 +175,9 @@ async function pollAvailability(request, env) {
   if (request.method !== "GET") return json({ success: false, message: "Method not allowed" }, 405);
   if (!env.APIFY_API_TOKEN) return json({ success: false, message: "Stock-check service is not configured." }, 503);
   const url = new URL(request.url);
+  if (url.searchParams.get("health") === "1") {
+    return json({ success: true, configured: Boolean(env.APIFY_API_TOKEN), service: "part-availability" });
+  }
   const runId = String(url.searchParams.get("runId") || "");
   if (!/^[A-Za-z0-9_-]{5,80}$/.test(runId)) return json({ success: false, message: "Invalid stock-check run." }, 400);
   try {
