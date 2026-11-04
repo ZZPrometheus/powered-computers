@@ -169,6 +169,12 @@ td.use { font-family: var(--font-mono); font-size: 14px; color: var(--accent); w
 .lines li span:last-child { font-family: var(--font-mono); white-space: nowrap; }
 .lines li.total { border-bottom: 0; font-weight: 700; font-size: 17px; }
 .msgs { display: grid; gap: 8px; }
+.ram-check { margin-top: 14px; padding: 14px 16px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); }
+.ram-check h3 { font-size: 18px; margin-bottom: 6px; }
+.ram-check p { color: var(--muted); font-size: 14px; margin: 3px 0; }
+.ram-check strong { color: var(--fg); }
+.ram-check.is-bad { border-left-color: var(--danger); }
+.ram-check.is-bad strong { color: var(--danger); }
 .msg { font-size: 14px; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); }
 .msg.warn { border-color: var(--accent); }
 .bin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); max-height: calc(100vh - 110px); overflow-y: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
@@ -435,6 +441,7 @@ footer { border-top: 2px solid var(--fg); padding-top: 22px; display: flex; just
       <div class="cfg">
         <div>
           <div class="slots" id="slots"></div>
+          <div class="ram-check" id="ram-check" aria-live="polite"></div>
           <div class="detail" id="detail"></div>
         </div>
         <div class="bin">
@@ -944,6 +951,23 @@ cab_12v2x6w,cables,"ThermalProtect 12V-2x6 GPU power cable, white",12V-2x6 white
     }
     return msgs;
   }
+  function renderRamCompatibility() {
+    var ram = PARTS[sel.ram], board = PARTS[sel.mobo], host = $('ram-check');
+    var compatible = ramFits(ram, board);
+    var ramType = ram.memory_type || 'Memory generation not specified';
+    var boardType = board.memory_type || 'Memory generation not specified';
+    var capacity = (+ram.capacity_gb > 0 ? ram.capacity_gb + ' GB' : 'Capacity not listed');
+    var maxText = (+board.max_memory_gb > 0 ? 'Motherboard maximum: ' + board.max_memory_gb + ' GB.' : 'Motherboard maximum capacity is not recorded in this catalog; confirm the board specification before ordering.');
+    host.className = 'ram-check' + (compatible ? '' : ' is-bad');
+    host.textContent = '';
+    var heading = el('h3', '', 'RAM compatibility');
+    var status = el('p');
+    status.appendChild(el('strong', '', compatible ? 'Compatible' : 'Not compatible'));
+    status.appendChild(document.createTextNode(' — ' + ramType + ', ' + capacity + ' RAM with ' + board.short + ' (' + boardType + ').'));
+    host.appendChild(heading);
+    host.appendChild(status);
+    host.appendChild(el('p', '', maxText));
+  }
   function warnings() {
     var w = [], cpu = PARTS[sel.cpu], cool = PARTS[sel.cooler], cs = PARTS[sel.case];
     if (cpu.hot === 'yes' && cool.kind !== 'aio' && cool.kind !== 'aiolcd') w.push('This processor runs hot. A 360 mm liquid cooler is recommended.');
@@ -1078,6 +1102,7 @@ cab_12v2x6w,cables,"ThermalProtect 12V-2x6 GPU power cable, white",12V-2x6 white
     var custom = !same(sel, baseSel);
     $('bar-custom').textContent = bsub + (custom ? ' \u00b7 customized' : ' \u00b7 as listed');
     $('bar-total').textContent = money(total.total);
+    renderRamCompatibility();
 
     var d = $('detail'); d.textContent = '';
     var ul = el('ul', 'lines');
